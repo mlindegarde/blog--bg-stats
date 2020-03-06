@@ -34,16 +34,14 @@ module Program =
             let client = new HttpClient(handler)
             client.BaseAddress <- Uri("https://www.boardgamegeek.com")
 
-            do! client |> BoardGameGeekClient.LogInAsync (config.BoardGameGeek.Username, config.BoardGameGeek.Password)
-            let! x = client |> BoardGameGeekClient.GetCollectionAsync (config.BoardGameGeek.Username, config.BoardGameGeek.Password)
+            do! client |> BoardGameGeekClient.LogInAsync (config.BoardGameGeek)
+            let! collection = client |> BoardGameGeekClient.GetCollectionAsync (config.BoardGameGeek)
 
-            return x
+            return ()
         }
 
     [<EntryPoint>]
     let main argv =
-
-        let collection = runAsync |> Async.AwaitTask |> Async.RunSynchronously
-
+        runAsync |> Async.AwaitTask |> Async.RunSynchronously
         Console.ReadLine() |> ignore
         0

@@ -3,7 +3,6 @@ namespace Misc.BgStats.Application
 open System
 open System.Net
 open System.Net.Http
-open System.Threading.Tasks
 open System.Xml.Linq
 
 open Flurl
@@ -12,13 +11,13 @@ open FSharp.Control.Tasks.V2
 open Misc.BgStats.Domain.Models
 
 module BoardGameGeekClient =
-    let LogInAsync (username : string, password : string) (client : HttpClient) =
+    let LogInAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
         task {
             use content =
                 new FormUrlEncodedContent(
                     dict[
-                        "username", username;
-                        "password", password])
+                        "username", bggSettings.Username;
+                        "password", bggSettings.Password])
 
             let! response = client.PostAsync("/login", content)
 
@@ -39,13 +38,13 @@ module BoardGameGeekClient =
 
     let xn s = XName.Get(s)
 
-    let GetCollectionAsync (username : string, password : string) (client : HttpClient) =
+    let GetCollectionAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
         task {
             let! collectionXml = 
                 client |> GetAsync(
                     "https://www.boardgamegeek.com"
                         .AppendPathSegments("xmlapi2", "collection")
-                        .SetQueryParam("username", username)
+                        .SetQueryParam("username", bggSettings.Username)
                         .SetQueryParam("showprivate", 1)
                         .SetQueryParam("stats", 1)
                         .SetQueryParam("own", 1)
@@ -55,7 +54,7 @@ module BoardGameGeekClient =
                 raise (ApplicationException("Failed to get collection"))
 
             let collection = {
-                OwnerUsername = username;
+                OwnerUsername = bggSettings.Username;
                 BoardGames = 
                     collectionXml.Root.Elements(xn "item") 
                     |> Seq.filter(fun i -> i.Attribute(xn "subtype").Value = "boardgame") 
