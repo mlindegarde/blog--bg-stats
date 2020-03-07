@@ -11,21 +11,15 @@ module Models =
     type Settings() =
         member val BoardGameGeek = BoardGameGeekSettings() with get, set
 
-    type Details = {
-        ObjectId : int
-        MinimumPlayers : int
-        MaximumPlayers : int
-    }
-
     type BoardGame = {
         ObjectId : int
         Name : string
         YearPublished : int
         Type : string
 
-        AcquisitionDate : Option<DateTime>
+        AcquisitionDate : DateTime option
 
-        MyRating : Option<decimal>
+        MyRating : decimal option
         AverageRating : decimal
         GeekRating : decimal
         NumberOfRatings : int
@@ -39,11 +33,23 @@ module Models =
         WasPreOrdered : bool
         IsOnWishList : bool
 
+        PlayCount : int
+
         MinimumPlayers : int
         MaximumPlayers : int
+
+        PlayingTime : int
+        MinimumPlayingTime : int
+        MaximumPlayingTime : int
+
+        MinimumAge : int
+        AverageWeight : decimal
+        NumberOfWeights : int
+
+        Mechanics : string list
     }
 
     type Collection = {
         OwnerUsername : string
-        BoardGames : list<BoardGame>
+        BoardGames : BoardGame list
     }

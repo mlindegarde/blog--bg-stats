@@ -26,13 +26,20 @@ module Program =
             .WriteTo.Console()
             .CreateLogger()
 
+    let initClient =
+        let cookieJar = CookieContainer()
+        let handler = new HttpClientHandler()
+
+        handler.CookieContainer <- cookieJar
+
+        let client = new HttpClient(handler)
+
+        client.BaseAddress <- config.BoardGameGeek.Url
+        client
+
     let runAsync = 
         task {
-            let cookieJar = CookieContainer()
-            let handler = new HttpClientHandler()
-            handler.CookieContainer <- cookieJar
-            let client = new HttpClient(handler)
-            client.BaseAddress <- config.BoardGameGeek.Url
+            let client = initClient
 
             do! client |> BoardGameGeekClient.logInAsync (config.BoardGameGeek)
             let! collection = client |> BoardGameGeekClient.getCollectionAsync (config.BoardGameGeek)
@@ -42,5 +49,7 @@ module Program =
 
     [<EntryPoint>]
     let main argv =
-        runAsync |> Async.AwaitTask |> Async.RunSynchronously
+        runAsync 
+        |> Async.AwaitTask 
+        |> Async.RunSynchronously
         0
