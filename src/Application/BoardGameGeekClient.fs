@@ -14,6 +14,7 @@ open Misc.BgStats.Domain.Models
 module BoardGameGeekClient =
     type BggCollection = XmlProvider<"Samples/collection-sample.xml">
     type BggDetails = XmlProvider<"Samples/details-sample.xml">
+    type BggPlays = XmlProvider<"Samples/plays-sample.xml">
 
     let logInAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
         task {
@@ -41,7 +42,7 @@ module BoardGameGeekClient =
 
     let xn s = XName.Get(s)
 
-    let toBoardGame (item : BggCollection.Item) (detail : BggDetails.Item) = {
+    let toBoardGame (item : BggCollection.Item) (detail : BggDetails.Item) (plays : BggPlays.Play list) = {
         ObjectId = item.Objectid;
         Name = item.Name.Value;
         YearPublished = item.Yearpublished;
@@ -91,6 +92,34 @@ module BoardGameGeekClient =
             |> Seq.filter (fun l -> l.Type = "boardgamemechanic") 
             |> Seq.map (fun l -> l.Value) 
             |> Seq.toList
+
+        Plays =
+            plays
+            |> Seq.map (
+                fun play -> {
+                    Id = play.Id;
+                    ObjectId = play.Item.Objectid;
+                    Date = play.Date;
+                    Quantity = play.Quantity;
+                    Location = play.Location;
+                    Players =
+                        play.Players 
+                        |> Option.bind (
+                            fun players -> 
+                                Some(
+                                    players.Players 
+                                    |> Seq.map (
+                                        fun x -> {
+                                            Username = x.Username.Value;
+                                            UserId = x.Userid;
+                                            Name = x.Name;
+                                            Score = x.Score;
+                                            Rating = x.Rating;
+                                            DidWin = x.Win;
+                                        }) 
+                                    |> Seq.toList))
+                })
+            |> Seq.toList
     }
 
     let getCollectionDataAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
@@ -113,13 +142,26 @@ module BoardGameGeekClient =
             let! detailsXml = 
                 client |> getAsStringAsync (
                     "https://www.boardgamegeek.com"
-                       .AppendPathSegment("xmlapi2")
+                        .AppendPathSegment("xmlapi2")
                         .AppendPathSegment("thing")
                         .SetQueryParam("id", String.Join(",", objectIds))
                         .SetQueryParam("stats", 1)
                         .ToUri())
 
             return (BggDetails.Parse (detailsXml)).Items |> Seq.toList
+        }
+
+    let getPlayDataASync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+        task {
+            let! playsXml =
+                client |> getAsStringAsync(
+                    "https://www.boardgamegeek.com"
+                        .AppendPathSegment("xmlapi2")
+                        .AppendPathSegment("plays")
+                        .SetQueryParam("username", bggSettings.Username)
+                        .ToUri())
+
+            return (BggPlays.Parse (playsXml)).Plays |> Seq.toList
         }
 
     let getCollectionAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
@@ -135,6 +177,9 @@ module BoardGameGeekClient =
                 |> Seq.collect (fun ids -> (client |> getDetailDataAsync ids).Result)
                 |> Seq.toList
 
+            // get all of the plays
+            let! bggPlays = client |> getPlayDataASync bggSettings
+
             // convert the data to the Collection object
             return {
                 OwnerUsername = bggSettings.Username;
@@ -145,6 +190,7 @@ module BoardGameGeekClient =
                         fun i -> 
                             toBoardGame 
                                 i 
-                                (bggDetails |> Seq.find (fun d -> d.Id = i.Objectid)))
+                                (bggDetails |> Seq.find (fun d -> d.Id = i.Objectid))
+                                (bggPlays |> Seq.filter (fun p -> p.Item.Objectid = i.Objectid) |> Seq.toList))
                     |> Seq.toList}
         }

@@ -11,6 +11,24 @@ module Models =
     type Settings() =
         member val BoardGameGeek = BoardGameGeekSettings() with get, set
 
+    type Player = {
+        Username : string
+        UserId : int
+        Name : string
+        Score : int option
+        Rating : int
+        DidWin : bool
+    }
+
+    type Play = {
+        Id : int
+        ObjectId : int
+        Date : DateTime
+        Quantity : int
+        Location : string
+        Players : Player list option
+    }
+
     type BoardGame = {
         ObjectId : int
         Name : string
@@ -47,6 +65,7 @@ module Models =
         NumberOfWeights : int
 
         Mechanics : string list
+        Plays : Play list
     }
 
     type Collection = {
