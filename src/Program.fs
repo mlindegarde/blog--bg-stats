@@ -39,7 +39,7 @@ module Program =
 
     let runAsync = 
         task {
-            let client = initClient()
+            use client = initClient()
 
             do! client |> BoardGameGeekClient.logInAsync config.BoardGameGeek
             let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek

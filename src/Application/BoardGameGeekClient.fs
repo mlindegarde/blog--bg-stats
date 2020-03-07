@@ -34,13 +34,48 @@ module BoardGameGeekClient =
         task {
             let! response = client.GetAsync uri
 
-            if response.StatusCode.Equals HttpStatusCode.OK then
-                return! response.Content.ReadAsStringAsync()
-            else
-                return! getAsStringAsync uri client
+            return!
+                if response.StatusCode = HttpStatusCode.OK then
+                    response.Content.ReadAsStringAsync()
+                else
+                    getAsStringAsync uri client;
         }
 
     let xn s = XName.Get(s)
+
+    let toMechanics (links : BggDetails.Link[]) =
+        links 
+        |> Seq.filter (fun l -> l.Type = "boardgamemechanic") 
+        |> Seq.map (fun l -> l.Value) 
+        |> Seq.toList
+
+    let toPlays (plays : BggPlays.Play list) =
+        plays
+        |> Seq.map (
+            fun play -> {
+                Id = play.Id;
+                ObjectId = play.Item.Objectid;
+                Date = play.Date;
+                Quantity = play.Quantity;
+                Location = play.Location;
+                Players =
+                    play.Players 
+                    |> Option.bind (
+                        fun players -> 
+                            Some(
+                                players.Players 
+                                |> Seq.map (
+                                    fun x -> {
+                                        Username = x.Username.Value;
+                                        UserId = x.Userid;
+                                        Name = x.Name;
+                                        Score = x.Score;
+                                        Rating = x.Rating;
+                                        DidWin = x.Win;
+                                    }) 
+                                |> Seq.toList))
+            })
+        |> Seq.toList
 
     let toBoardGame (item : BggCollection.Item) (detail : BggDetails.Item) (plays : BggPlays.Play list) = {
         ObjectId = item.Objectid;
@@ -87,39 +122,8 @@ module BoardGameGeekClient =
         AverageWeight = detail.Statistics.Ratings.Averageweight.Value;
         NumberOfWeights = detail.Statistics.Ratings.Numweights.Value;
 
-        Mechanics = 
-            detail.Links 
-            |> Seq.filter (fun l -> l.Type = "boardgamemechanic") 
-            |> Seq.map (fun l -> l.Value) 
-            |> Seq.toList
-
-        Plays =
-            plays
-            |> Seq.map (
-                fun play -> {
-                    Id = play.Id;
-                    ObjectId = play.Item.Objectid;
-                    Date = play.Date;
-                    Quantity = play.Quantity;
-                    Location = play.Location;
-                    Players =
-                        play.Players 
-                        |> Option.bind (
-                            fun players -> 
-                                Some(
-                                    players.Players 
-                                    |> Seq.map (
-                                        fun x -> {
-                                            Username = x.Username.Value;
-                                            UserId = x.Userid;
-                                            Name = x.Name;
-                                            Score = x.Score;
-                                            Rating = x.Rating;
-                                            DidWin = x.Win;
-                                        }) 
-                                    |> Seq.toList))
-                })
-            |> Seq.toList
+        Mechanics = detail.Links |> toMechanics
+        Plays = plays |> toPlays
     }
 
     let getCollectionDataAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
