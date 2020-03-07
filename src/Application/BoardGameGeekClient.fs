@@ -11,9 +11,9 @@ open FSharp.Data
 
 open Misc.BgStats.Domain.Models
 
-
 module BoardGameGeekClient =
     type BggCollection = XmlProvider<"Samples/collection-sample.xml">
+    type BggDetails = XmlProvider<"Samples/details-sample.xml">
 
     let logInAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
         task {
@@ -52,37 +52,64 @@ module BoardGameGeekClient =
 
     let xn s = XName.Get(s)
 
-    let toBoardGame (i : BggCollection.Item) = {
-        ObjectId = i.Objectid;
-        Name = i.Name.Value;
-        YearPublished = i.Yearpublished;
-        Type = i.Subtype;
+    let getDetailsAsync (objectIds : int[]) (client : HttpClient) =
+        task {
+            let! detailsXml = 
+                client |> getAsStringAsync(
+                    "https://www.boardgamegeek.com"
+                       .AppendPathSegment("xmlapi2")
+                        .AppendPathSegment("thing")
+                        .SetQueryParam("id", String.Join(",", objectIds))
+                        .SetQueryParam("stats", 1)
+                        .ToUri())
+                
+            let bggDetails = BggDetails.Parse(detailsXml)
 
-        AcquisitionDate = i.Privateinfo |> Option.bind(fun x -> Some(x.Acquisitiondate));
+            return 
+                bggDetails.Items
+                |> Seq.map(
+                    fun i -> {
+                        ObjectId = i.Id;
+                        MaximumPlayers = i.Maxplayers.Value;
+                        MinimumPlayers = i.Minplayers.Value;
+                    })
+                |> Seq.toList
+        }
+
+    let toBoardGame (item : BggCollection.Item) (details : Details) = {
+        ObjectId = item.Objectid;
+        Name = item.Name.Value;
+        YearPublished = item.Yearpublished;
+        Type = item.Subtype;
+
+        AcquisitionDate = item.Privateinfo |> Option.bind(fun x -> Some(x.Acquisitiondate));
 
         MyRating = 
-            i.Stats.Rating.Value.String 
+            item.Stats.Rating.Value.String 
             |> Option.bind(fun x -> if x <> "N/A" then Some(Decimal.Parse(x)) else None);
 
-        AverageRating = i.Stats.Rating.Average.Value;
-        GeekRating = i.Stats.Rating.Bayesaverage.Value;
-        NumberOfRatings = i.Stats.Rating.Usersrated.Value;
+        AverageRating = item.Stats.Rating.Average.Value;
+        GeekRating = item.Stats.Rating.Bayesaverage.Value;
+        NumberOfRatings = item.Stats.Rating.Usersrated.Value;
 
         OverallRank = 
-            i.Stats.Rating.Ranks 
+            item.Stats.Rating.Ranks 
             |> Seq.find(fun r -> r.Name = "boardgame")
             |> (fun x -> if x.Value.Value <> "Not Ranked" then Int32.Parse(x.Value.Value) else 0);
 
         CategoryRank = 
-            match i.Stats.Rating.Ranks |> Seq.tryFind (fun r -> r.Type = "family") with
+            match item.Stats.Rating.Ranks |> Seq.tryFind (fun r -> r.Type = "family") with
             | Some(r) -> if r.Value.Value <> "Not Ranked" then Int32.Parse(r.Value.Value) else 0
             | None -> 0;
 
-        IsOwned = i.Status.Own = 1;
-        WasOwned = i.Status.Prevowned = 1;
-        DoesWant = i.Status.Want = 1;
-        WasPreOrdered = i.Status.Preordered ;
-        IsOnWishList = i.Status.Wishlist = 1;
+        IsOwned = item.Status.Own = 1;
+        WasOwned = item.Status.Prevowned = 1;
+        DoesWant = item.Status.Want = 1;
+        WasPreOrdered = item.Status.Preordered ;
+        IsOnWishList = item.Status.Wishlist = 1;
+
+        MinimumPlayers = details.MinimumPlayers;
+        MaximumPlayers = details.MaximumPlayers;
     }
 
     let getCollectionAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
@@ -99,11 +126,22 @@ module BoardGameGeekClient =
 
             let bggCollection = BggCollection.Parse(collectionXml)
 
+            let bggDetails = 
+                bggCollection.Items 
+                |> Seq.map (fun i -> i.Objectid) 
+                |> Seq.chunkBySize 50
+                |> Seq.collect (fun ids -> (client |> getDetailsAsync ids).Result)
+                |> Seq.toList
+
             return {
                 OwnerUsername = bggSettings.Username;
                 BoardGames =
                     bggCollection.Items
                     |> Seq.filter(fun i -> i.Subtype = "boardgame")
-                    |> Seq.map(toBoardGame)
+                    |> Seq.map(
+                        fun i -> 
+                            toBoardGame 
+                                i 
+                                (bggDetails |> Seq.find(fun d -> d.ObjectId = i.Objectid)))
                     |> Seq.toList}
         }
