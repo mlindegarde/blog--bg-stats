@@ -4,6 +4,7 @@ open System
 
 module Models =
     type BoardGameGeekSettings() =
+        member val Url : Uri = Unchecked.defaultof<Uri> with get, set
         member val Username = String.Empty with get, set
         member val Password = String.Empty with get, set
 
@@ -14,6 +15,23 @@ module Models =
         ObjectId : int
         Name : string
         YearPublished : int
+        Type : string
+
+        AcquisitionDate : Option<DateTime>
+
+        MyRating : Option<decimal>
+        AverageRating : decimal
+        GeekRating : decimal
+        NumberOfRatings : int
+
+        OverallRank : int
+        CategoryRank : int
+
+        IsOwned : bool
+        WasOwned : bool
+        DoesWant : bool
+        WasPreOrdered : bool
+        IsOnWishList : bool
     }
 
     type Collection = {

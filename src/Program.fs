@@ -32,16 +32,15 @@ module Program =
             let handler = new HttpClientHandler()
             handler.CookieContainer <- cookieJar
             let client = new HttpClient(handler)
-            client.BaseAddress <- Uri("https://www.boardgamegeek.com")
+            client.BaseAddress <- config.BoardGameGeek.Url
 
-            do! client |> BoardGameGeekClient.LogInAsync (config.BoardGameGeek)
-            let! collection = client |> BoardGameGeekClient.GetCollectionAsync (config.BoardGameGeek)
+            do! client |> BoardGameGeekClient.logInAsync (config.BoardGameGeek)
+            let! collection = client |> BoardGameGeekClient.getCollectionAsync (config.BoardGameGeek)
 
-            return ()
+            Console.ReadLine() |> ignore
         }
 
     [<EntryPoint>]
     let main argv =
         runAsync |> Async.AwaitTask |> Async.RunSynchronously
-        Console.ReadLine() |> ignore
         0
