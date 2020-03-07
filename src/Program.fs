@@ -26,7 +26,7 @@ module Program =
             .WriteTo.Console()
             .CreateLogger()
 
-    let initClient =
+    let initClient () =
         let cookieJar = CookieContainer()
         let handler = new HttpClientHandler()
 
@@ -39,10 +39,10 @@ module Program =
 
     let runAsync = 
         task {
-            let client = initClient
+            let client = initClient()
 
-            do! client |> BoardGameGeekClient.logInAsync (config.BoardGameGeek)
-            let! collection = client |> BoardGameGeekClient.getCollectionAsync (config.BoardGameGeek)
+            do! client |> BoardGameGeekClient.logInAsync config.BoardGameGeek
+            let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek
 
             Console.ReadLine() |> ignore
         }
