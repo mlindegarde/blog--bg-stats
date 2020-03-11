@@ -37,13 +37,29 @@ module Program =
         client.BaseAddress <- config.BoardGameGeek.Url
         client
 
+    let displayResults (title : string, limit : int) (rankings : Ranking list) =
+        printf "%s%s%s" Environment.NewLine title Environment.NewLine
+
+        rankings
+        |> List.take(limit)
+        |> List.iter(fun r ->
+            printfn 
+                "%3d: %s - %.2f"
+                r.Position
+                r.BoardGame.Name
+                (r.Evaluation.Scores |> List.sumBy (fun s -> s.Value)))
+
+
     let runAsync = 
         task {
             use client = initClient()
 
-            do! client |> BoardGameGeekClient.logInAsync config.BoardGameGeek
-            let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek
+            let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek logger
+            let evaluations = collection |> Evaluator.evaluate
 
+            evaluations |> Ranker.RankByScore |> displayResults ("Top 25 Games", 25)
+
+            printf "%sPress ENTER to exit: " Environment.NewLine
             Console.ReadLine() |> ignore
         }
 

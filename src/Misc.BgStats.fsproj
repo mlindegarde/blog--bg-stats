@@ -7,7 +7,9 @@
 
   <ItemGroup>
     <Compile Include="Domain\Models.fs" />
+    <Compile Include="Application\Evaluator.fs" />
     <Compile Include="Application\BoardGameGeekClient.fs" />
+    <Compile Include="Application\Ranker.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -72,3 +72,23 @@ module Models =
         OwnerUsername : string
         BoardGames : BoardGame list
     }
+
+    type ScoreType = Undefined = 0 | Plays = 1 | Rating = 2 | Ownership = 3
+
+    type Score = {
+        ScoreType : ScoreType
+        Value : double
+    }
+
+    type Evaluation = {
+        BoardGame : BoardGame
+        DaysSinceLastPlayed : double
+        AverageDaysBetweenPlays : double
+        Scores : Score list
+    }
+
+    type Ranking = {
+        Position : int
+        BoardGame : BoardGame
+        Evaluation : Evaluation
+    }

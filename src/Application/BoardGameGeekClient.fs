@@ -8,6 +8,7 @@ open System.Xml.Linq
 open Flurl
 open FSharp.Control.Tasks.V2
 open FSharp.Data
+open Serilog
 
 open Misc.BgStats.Domain.Models
 
@@ -30,7 +31,7 @@ module BoardGameGeekClient =
                 raise (ApplicationException("Authentication failed"))
         }
 
-    let rec getAsStringAsync (uri : Uri) (client : HttpClient) =
+    let rec private getAsStringAsync (uri : Uri) (client : HttpClient) =
         task {
             let! response = client.GetAsync uri
 
@@ -41,15 +42,15 @@ module BoardGameGeekClient =
                     getAsStringAsync uri client;
         }
 
-    let xn s = XName.Get(s)
+    let private xn s = XName.Get(s)
 
-    let toMechanics (links : BggDetails.Link[]) =
+    let private toMechanics (links : BggDetails.Link[]) =
         links 
         |> Seq.filter (fun l -> l.Type = "boardgamemechanic") 
         |> Seq.map (fun l -> l.Value) 
         |> Seq.toList
 
-    let toPlays (plays : BggPlays.Play list) =
+    let private toPlays (plays : BggPlays.Play list) =
         plays
         |> Seq.map (
             fun play -> {
@@ -77,7 +78,7 @@ module BoardGameGeekClient =
             })
         |> Seq.toList
 
-    let toBoardGame (item : BggCollection.Item) (detail : BggDetails.Item) (plays : BggPlays.Play list) = {
+    let private toBoardGame (item : BggCollection.Item) (detail : BggDetails.Item) (plays : BggPlays.Play list) = {
         ObjectId = item.Objectid;
         Name = item.Name.Value;
         YearPublished = item.Yearpublished;
@@ -126,7 +127,7 @@ module BoardGameGeekClient =
         Plays = plays |> toPlays
     }
 
-    let getCollectionDataAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+    let private getCollectionDataAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
         task {
             let! collectionXml =
                 client |> getAsStringAsync (
@@ -141,7 +142,7 @@ module BoardGameGeekClient =
             return BggCollection.Parse (collectionXml)
         }
 
-    let getDetailDataAsync (objectIds : int[]) (client : HttpClient) =
+    let private getDetailDataAsync (objectIds : int[]) (client : HttpClient) =
         task {
             let! detailsXml = 
                 client |> getAsStringAsync (
@@ -155,7 +156,7 @@ module BoardGameGeekClient =
             return (BggDetails.Parse (detailsXml)).Items |> Seq.toList
         }
 
-    let getPlayDataASync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+    let private getPlayDataASync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
         task {
             let! playsXml =
                 client |> getAsStringAsync(
@@ -168,12 +169,16 @@ module BoardGameGeekClient =
             return (BggPlays.Parse (playsXml)).Plays |> Seq.toList
         }
 
-    let getCollectionAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+    let getCollectionAsync (bggSettings : BoardGameGeekSettings) (logger : ILogger) (client : HttpClient) =
         task {
-            // get the collection
-            let! bggCollection = client |> getCollectionDataAsync bggSettings
+            logger.Information ("Logging in using: {Username}...", bggSettings.Username)
+            do! client |> logInAsync bggSettings
 
-            // get additional details 50 at a time
+            logger.Information ("Loading collection...")
+            let! bggCollection = client |> getCollectionDataAsync bggSettings
+            logger.Information ("Found {BoardGameCount} board games", bggCollection.Items.Length)
+
+            logger.Information ("Getting additional details...")
             let bggDetails = 
                 bggCollection.Items 
                 |> Seq.map (fun i -> i.Objectid) 
@@ -181,11 +186,12 @@ module BoardGameGeekClient =
                 |> Seq.collect (fun ids -> (client |> getDetailDataAsync ids).Result)
                 |> Seq.toList
 
-            // get all of the plays
+            logger.Information ("Loading plays for user: {Username} ...", bggSettings.Username)
             let! bggPlays = client |> getPlayDataASync bggSettings
+            logger.Information ("Found {PlayCount} plays", bggPlays.Length)
 
-            // convert the data to the Collection object
-            return {
+            logger.Information ("Converting to object model...")
+            let result = {
                 OwnerUsername = bggSettings.Username;
                 BoardGames =
                     bggCollection.Items
@@ -197,4 +203,6 @@ module BoardGameGeekClient =
                                 (bggDetails |> Seq.find (fun d -> d.Id = i.Objectid))
                                 (bggPlays |> Seq.filter (fun p -> p.Item.Objectid = i.Objectid) |> Seq.toList))
                     |> Seq.toList}
+            logger.Information ("Collection loaded")
+            return result
         }
