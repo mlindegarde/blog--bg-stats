@@ -57,7 +57,9 @@ module Program =
             let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek logger
             let evaluations = collection |> Evaluator.evaluate
 
-            evaluations |> Ranker.RankByScore |> displayResults ("Top 25 Games", 25)
+            evaluations |> Ranker.Top25AllTime |> displayResults ("Top 25 Games", 25)
+            evaluations |> Ranker.GamesToPlay |> displayResults ("Top 15 Games to Play", 15)
+            evaluations |> Ranker.GamesToSellOrTrade |> displayResults ("Top 15 Games to Sell / Trade", 15)
 
             printf "%sPress ENTER to exit: " Environment.NewLine
             Console.ReadLine() |> ignore
