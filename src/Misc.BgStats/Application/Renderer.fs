@@ -5,10 +5,10 @@ open System
 open Misc.BgStats.Domain.Models
 
 module Renderer =
-    let getScore (scoreType : ScoreType) (scores : Score list) =
+    let private getScore (scoreType : ScoreType) (scores : Score list) =
         (scores |> List.find (fun s -> s.ScoreType = scoreType)).Value
 
-    let displayTopLine (longestName : int) =
+    let private displayTopLine (longestName : int) =
         printf "\u2554"
         [0..3] |> List.iter (fun _ -> printf "\u2550")
         printf "\u2564"
@@ -25,7 +25,7 @@ module Renderer =
 
         longestName
 
-    let displayHeaders (longestName : int) =
+    let private displayHeaders (longestName : int) =
         printfn
             "\u2551  # \u2502 %-*s \u2502      T \u2502      R \u2502      P \u2502      O \u2551"
             longestName
@@ -33,7 +33,7 @@ module Renderer =
 
         longestName
 
-    let displayHeaderLine (longestName : int) =
+    let private displayHeaderLine (longestName : int) =
         printf "\u2560"
         [0..3] |> List.iter (fun _ -> printf "\u2550")
         printf "\u256A"
@@ -48,7 +48,7 @@ module Renderer =
         [0..7] |> List.iter (fun _ -> printf "\u2550")
         printfn "\u2563"
 
-    let displayBottomLine (longestName : int) =
+    let private displayBottomLine (longestName : int) =
         printf "\u255A"
         [0..3] |> List.iter (fun _ -> printf "\u2550")
         printf "\u2567"
@@ -63,7 +63,7 @@ module Renderer =
         [0..7] |> List.iter (fun _ -> printf "\u2550")
         printfn "\u255D"
 
-    let displayResults (title : string, limit : int) (rankings : Ranking list) =
+    let private displayResults (title : string, limit : int) (rankings : Ranking list) =
         printf "%s%s%s" Environment.NewLine title Environment.NewLine
 
         let topN = rankings |> List.take (limit)
