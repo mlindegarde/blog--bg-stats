@@ -10,6 +10,7 @@
     <Compile Include="Application\Evaluator.fs" />
     <Compile Include="Application\BoardGameGeekClient.fs" />
     <Compile Include="Application\Ranker.fs" />
+    <Compile Include="Application\Renderer.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
