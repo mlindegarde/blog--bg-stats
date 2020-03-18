@@ -40,6 +40,7 @@ module Program =
     let runAsync = 
         task {
             use client = initClient()
+            //let! x = client |> BoardGameGeekClient.getPlayDataForItemAsync 266507
 
             let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek logger
             let evaluations = collection |> Evaluator.evaluate

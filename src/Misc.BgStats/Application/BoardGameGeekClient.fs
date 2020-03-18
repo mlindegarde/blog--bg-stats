@@ -156,17 +156,53 @@ module BoardGameGeekClient =
             return (BggDetails.Parse (detailsXml)).Items |> Seq.toList
         }
 
-    let private getPlayDataASync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+    let private getPlayDataPageAsync (url : Url) (page : int) (client : HttpClient) =
         task {
-            let! playsXml =
+            let! playsXml = 
                 client |> getAsStringAsync(
-                    "https://www.boardgamegeek.com"
-                        .AppendPathSegment("xmlapi2")
-                        .AppendPathSegment("plays")
-                        .SetQueryParam("username", bggSettings.Username)
+                    url
+                        .SetQueryParam("page", page)
                         .ToUri())
 
-            return (BggPlays.Parse (playsXml)).Plays |> Seq.toList
+            let bggPlayData = BggPlays.Parse playsXml
+
+            return (bggPlayData.Plays |> Seq.toList, bggPlayData.Total)
+        }
+
+    let private getPlayDataAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+        task {
+            let url =
+                "https://www.boardgamegeek.com"
+                    .AppendPathSegment("xmlapi2")
+                    .AppendPathSegment("plays")
+                    .SetQueryParam("username", bggSettings.Username)
+
+            let! (plays, playCount) = client |> getPlayDataPageAsync url 1
+
+            if playCount <> plays.Length then
+                let pageCount = (playCount / 100) + (if playCount%100 = 0 then 0 else 1)
+
+                return
+                    plays @ 
+                    ([2 .. pageCount]
+                    |> Seq.collect (fun pageNum -> fst (client |> getPlayDataPageAsync url pageNum).Result)
+                    |> Seq.toList)
+            else
+                return plays
+        }
+
+    let getPlayDataForItemAsync (itemId : int) (client : HttpClient) =
+        task {
+            let! (plays, playCount) =
+                getPlayDataPageAsync
+                    ("https://www.boardgamegeek.com"
+                        .AppendPathSegment("xmlapi2")
+                        .AppendPathSegment("plays")
+                        .SetQueryParam("id", itemId))
+                    1
+                    client
+
+            return plays
         }
 
     let getCollectionAsync (bggSettings : BoardGameGeekSettings) (logger : ILogger) (client : HttpClient) =
@@ -187,7 +223,7 @@ module BoardGameGeekClient =
                 |> Seq.toList
 
             logger.Information ("Loading plays for user: {Username} ...", bggSettings.Username)
-            let! bggPlays = client |> getPlayDataASync bggSettings
+            let! bggPlays = client |> getPlayDataAsync bggSettings
             logger.Information ("Found {PlayCount} plays", bggPlays.Length)
 
             logger.Information ("Converting to object model...")

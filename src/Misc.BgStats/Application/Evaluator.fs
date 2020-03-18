@@ -64,13 +64,16 @@ module Evaluator =
             let age = (DateTime.Now - ad).TotalDays
 
             match boardGame.MyRating with
-            | None when boardGame.PlayCount = 0 -> -(age/90.0)
+            | None when boardGame.PlayCount = 0 -> 
+                -(age/90.0)
             | _ when boardGame.PlayCount > 0 -> 
                 let daysPerPlay = age / (double boardGame.PlayCount)
                 3.0 * daysInMonth / daysPerPlay
-            | _ -> 0.0
+            | _ -> 
+                0.0
 
-        | None -> 0.0
+        | None -> 
+            0.0
 
     let private evaluateBoardGame (boardGame : BoardGame) =
         let sortedPlays = boardGame.Plays |> List.sortByDescending (fun p -> p.Date)
