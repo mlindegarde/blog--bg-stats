@@ -156,8 +156,10 @@ module BoardGameGeekClient =
             return (BggDetails.Parse (detailsXml)).Items |> Seq.toList
         }
 
-    let private getPlayDataPageAsync (url : Url) (page : int) (client : HttpClient) =
+    let private getPlayDataPageAsync (url : Url) (page : int) (logger : ILogger) (client : HttpClient) =
         task {
+            logger.Verbose ("Loading page {Page} for {Url}", page, url.ToString())
+
             let! playsXml = 
                 client |> getAsStringAsync(
                     url
@@ -169,7 +171,7 @@ module BoardGameGeekClient =
             return (bggPlayData.Plays |> Seq.toList, bggPlayData.Total)
         }
 
-    let private getPlayDataAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+    let private getPlayDataAsync (bggSettings : BoardGameGeekSettings) (logger : ILogger) (client : HttpClient) =
         task {
             let url =
                 "https://www.boardgamegeek.com"
@@ -177,7 +179,7 @@ module BoardGameGeekClient =
                     .AppendPathSegment("plays")
                     .SetQueryParam("username", bggSettings.Username)
 
-            let! (plays, playCount) = client |> getPlayDataPageAsync url 1
+            let! (plays, playCount) = client |> getPlayDataPageAsync url 1 logger
 
             if playCount <> plays.Length then
                 let pageCount = (playCount / 100) + (if playCount%100 = 0 then 0 else 1)
@@ -185,24 +187,10 @@ module BoardGameGeekClient =
                 return
                     plays @ 
                     ([2 .. pageCount]
-                    |> Seq.collect (fun pageNum -> fst (client |> getPlayDataPageAsync url pageNum).Result)
+                    |> Seq.collect (fun pageNum -> fst (client |> getPlayDataPageAsync url pageNum logger).Result)
                     |> Seq.toList)
             else
                 return plays
-        }
-
-    let getPlayDataForItemAsync (itemId : int) (client : HttpClient) =
-        task {
-            let! (plays, playCount) =
-                getPlayDataPageAsync
-                    ("https://www.boardgamegeek.com"
-                        .AppendPathSegment("xmlapi2")
-                        .AppendPathSegment("plays")
-                        .SetQueryParam("id", itemId))
-                    1
-                    client
-
-            return plays
         }
 
     let getCollectionAsync (bggSettings : BoardGameGeekSettings) (logger : ILogger) (client : HttpClient) =
@@ -223,7 +211,7 @@ module BoardGameGeekClient =
                 |> Seq.toList
 
             logger.Information ("Loading plays for user: {Username} ...", bggSettings.Username)
-            let! bggPlays = client |> getPlayDataAsync bggSettings
+            let! bggPlays = client |> getPlayDataAsync bggSettings logger
             logger.Information ("Found {PlayCount} plays", bggPlays.Length)
 
             logger.Information ("Converting to object model...")
@@ -241,4 +229,38 @@ module BoardGameGeekClient =
                     |> Seq.toList}
             logger.Information ("Collection loaded")
             return result
+        }
+
+    let private getPlayDataForItemAsync (itemId : int) (logger : ILogger) (client : HttpClient) =
+        task {
+            let url = 
+                "https://www.boardgamegeek.com"
+                        .AppendPathSegment("xmlapi2")
+                        .AppendPathSegment("plays")
+                        .SetQueryParam("id", itemId)
+
+            let! (plays, playCount) = client |> getPlayDataPageAsync url 1 logger
+
+            if playCount <> plays.Length then
+                let pageCount = (playCount / 100) + (if playCount % 100 = 0 then 0 else 1)
+
+                return
+                    plays @
+                    ([2 .. pageCount]
+                    |> Seq.collect (fun pageNum -> fst (client |> getPlayDataPageAsync url pageNum logger).Result)
+                    |> Seq.toList)
+            else
+                return plays
+        }
+
+    let getAverageScoreForItemAsync (itemId : int) (logger : ILogger) (client : HttpClient) =
+        task {
+            let! plays = client |> getPlayDataForItemAsync itemId logger
+
+            return
+                plays 
+                |> List.choose (fun play -> play.Players |> Option.bind (fun x -> Some(x.Players)))
+                |> List.collect (fun players -> players |> Array.toList)
+                |> List.choose (fun player -> player.Score)
+                |> List.averageBy (fun score -> (double score))
         }

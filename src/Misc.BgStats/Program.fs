@@ -37,17 +37,26 @@ module Program =
         client.BaseAddress <- config.BoardGameGeek.Url
         client
 
+    let calcAverageScore (plays : Domain.Models.Play list) =
+        0
+
     let runAsync = 
         task {
             use client = initClient()
-            //let! x = client |> BoardGameGeekClient.getPlayDataForItemAsync 266507
 
+            // 286096 = Tapestry
+            let! avgScore = client |> BoardGameGeekClient.getAverageScoreForItemAsync 286096 logger
+
+            Renderer.displayAverageScore avgScore
+
+            (*
             let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek logger
             let evaluations = collection |> Evaluator.evaluate
 
             evaluations |> Ranker.Top25AllTime |> Renderer.displayTop25Games
             evaluations |> Ranker.GamesToPlay |> Renderer.display15GamesToPlay
             evaluations |> Ranker.GamesToSellOrTrade |> Renderer.display15GamesToSellOrTrade
+            *)
 
             printf "%sPress ENTER to exit: " Environment.NewLine
             Console.ReadLine() |> ignore
