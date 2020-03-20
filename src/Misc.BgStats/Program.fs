@@ -45,9 +45,10 @@ module Program =
             use client = initClient()
 
             // 286096 = Tapestry
-            let! avgScore = client |> BoardGameGeekClient.getAverageScoreForItemAsync 286096 logger
-
-            Renderer.displayAverageScore avgScore
+            // 199792 = Everdell
+            // 266192 = Wingspan
+            let! result = client |> BoardGameGeekClient.getAverageScoreForItemAsync 266192 logger
+            Renderer.displayAverageScore result
 
             (*
             let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek logger
