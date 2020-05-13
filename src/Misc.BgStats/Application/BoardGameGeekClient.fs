@@ -31,15 +31,30 @@ module BoardGameGeekClient =
                 raise (ApplicationException("Authentication failed"))
         }
 
-    let rec private getAsStringAsync (uri : Uri) (client : HttpClient) =
+    let rec private getAsStringAsync (uri : Uri) (delayRequest : bool) (logger : ILogger) (client : HttpClient) =
         task {
+            // I always want a delay of some sort, if the server gives me response telling me there were
+            // to many requests, then make the delay longer.
+            let longDelay = 61.0
+            let shortDelay = 0.33
+            let delayInSeconds = if delayRequest then longDelay else shortDelay
+
+            do! System.Threading.Tasks.Task.Delay (int (delayInSeconds*1000.0))
+
+            let start = DateTime.Now.Ticks
             let! response = client.GetAsync uri
+            let runTime = (TimeSpan.FromTicks (DateTime.Now.Ticks - start)).TotalMilliseconds
+
+            logger.Verbose ("Recieved a {Response} after {Milliseconds}", response.StatusCode, runTime)
 
             return!
                 if response.StatusCode = HttpStatusCode.OK then
                     response.Content.ReadAsStringAsync()
+                elif response.StatusCode = HttpStatusCode.TooManyRequests then
+                    logger.Warning ("To many requests, delaying for {Delay} seconds", longDelay)
+                    getAsStringAsync uri true logger client
                 else
-                    getAsStringAsync uri client;
+                    getAsStringAsync uri false logger client
         }
 
     let private xn s = XName.Get(s)
@@ -127,7 +142,7 @@ module BoardGameGeekClient =
         Plays = plays |> toPlays
     }
 
-    let private getCollectionDataAsync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+    let private getCollectionDataAsync (bggSettings : BoardGameGeekSettings) (logger : ILogger) (client : HttpClient) =
         task {
             let! collectionXml =
                 client |> getAsStringAsync (
@@ -138,11 +153,13 @@ module BoardGameGeekClient =
                         .SetQueryParam("stats", 1)
                         .SetQueryParam("own", 1)
                         .ToUri())
+                    false
+                    logger
 
             return BggCollection.Parse (collectionXml)
         }
 
-    let private getDetailDataAsync (objectIds : int[]) (client : HttpClient) =
+    let private getDetailDataAsync (objectIds : int[]) (logger : ILogger) (client : HttpClient) =
         task {
             let! detailsXml = 
                 client |> getAsStringAsync (
@@ -152,21 +169,50 @@ module BoardGameGeekClient =
                         .SetQueryParam("id", String.Join(",", objectIds))
                         .SetQueryParam("stats", 1)
                         .ToUri())
+                    false
+                    logger
 
             return (BggDetails.Parse (detailsXml)).Items |> Seq.toList
         }
 
-    let private getPlayDataASync (bggSettings : BoardGameGeekSettings) (client : HttpClient) =
+    let private getPlayDataPageAsync (url : Url) (page : int, pageCount : int) (logger : ILogger) (client : HttpClient) =
         task {
-            let! playsXml =
-                client |> getAsStringAsync(
-                    "https://www.boardgamegeek.com"
-                        .AppendPathSegment("xmlapi2")
-                        .AppendPathSegment("plays")
-                        .SetQueryParam("username", bggSettings.Username)
-                        .ToUri())
+            url.SetQueryParam ("page", page) |> ignore
 
-            return (BggPlays.Parse (playsXml)).Plays |> Seq.toList
+            logger.Verbose ("Loading page {Page} of {PageCount} for {Url}", page, pageCount, url.ToString())
+
+            let! playsXml = 
+                client 
+                |> getAsStringAsync(
+                    url.ToUri())
+                    false
+                    logger
+
+            let bggPlayData = BggPlays.Parse playsXml
+
+            return (bggPlayData.Plays |> Seq.toList, bggPlayData.Total)
+        }
+
+    let private getPlayDataAsync (bggSettings : BoardGameGeekSettings) (logger : ILogger) (client : HttpClient) =
+        task {
+            let url =
+                "https://www.boardgamegeek.com"
+                    .AppendPathSegment("xmlapi2")
+                    .AppendPathSegment("plays")
+                    .SetQueryParam("username", bggSettings.Username)
+
+            let! (plays, playCount) = client |> getPlayDataPageAsync url (1,1) logger
+
+            if playCount <> plays.Length then
+                let pageCount = (playCount / 100) + (if playCount%100 = 0 then 0 else 1)
+
+                return
+                    plays @ 
+                    ([2 .. pageCount]
+                    |> Seq.collect (fun pageNum -> fst (client |> getPlayDataPageAsync url (pageNum, pageCount) logger).Result)
+                    |> Seq.toList)
+            else
+                return plays
         }
 
     let getCollectionAsync (bggSettings : BoardGameGeekSettings) (logger : ILogger) (client : HttpClient) =
@@ -175,7 +221,7 @@ module BoardGameGeekClient =
             do! client |> logInAsync bggSettings
 
             logger.Information ("Loading collection...")
-            let! bggCollection = client |> getCollectionDataAsync bggSettings
+            let! bggCollection = client |> getCollectionDataAsync bggSettings logger
             logger.Information ("Found {BoardGameCount} board games", bggCollection.Items.Length)
 
             logger.Information ("Getting additional details...")
@@ -183,11 +229,11 @@ module BoardGameGeekClient =
                 bggCollection.Items 
                 |> Seq.map (fun i -> i.Objectid) 
                 |> Seq.chunkBySize 50
-                |> Seq.collect (fun ids -> (client |> getDetailDataAsync ids).Result)
+                |> Seq.collect (fun ids -> (client |> getDetailDataAsync ids logger).Result)
                 |> Seq.toList
 
             logger.Information ("Loading plays for user: {Username} ...", bggSettings.Username)
-            let! bggPlays = client |> getPlayDataASync bggSettings
+            let! bggPlays = client |> getPlayDataAsync bggSettings logger
             logger.Information ("Found {PlayCount} plays", bggPlays.Length)
 
             logger.Information ("Converting to object model...")
@@ -205,4 +251,43 @@ module BoardGameGeekClient =
                     |> Seq.toList}
             logger.Information ("Collection loaded")
             return result
+        }
+
+    let private getPlayDataForItemAsync (itemId : int) (logger : ILogger) (client : HttpClient) =
+        task {
+            let url = 
+                "https://www.boardgamegeek.com"
+                        .AppendPathSegment("xmlapi2")
+                        .AppendPathSegment("plays")
+                        .SetQueryParam("id", itemId)
+
+            let! (plays, playCount) = client |> getPlayDataPageAsync url (1, 1) logger
+
+            if playCount <> plays.Length then
+                let pageCount = (playCount / 100) + (if playCount % 100 = 0 then 0 else 1)
+                logger.Verbose ("Total page count: {PageCount}", pageCount) 
+
+                return 
+                    plays @ 
+                    ([2 .. pageCount]
+                    |> Seq.collect (fun pageNum -> fst (client |> getPlayDataPageAsync url (pageNum, pageCount) logger).Result)
+                    |> Seq.toList)
+            else
+                return plays
+        }
+
+    let getAverageScoreForItemAsync (itemId : int) (logger : ILogger) (client : HttpClient) =
+        task {
+            let! details = client |> getDetailDataAsync [|itemId|] logger
+            let! plays = client |> getPlayDataForItemAsync itemId logger
+
+            let boardGameName = (details.[0].Names |> Array.find (fun n -> n.Type = "primary")).Value
+
+            return 
+                (boardGameName,
+                plays 
+                |> List.choose (fun play -> play.Players |> Option.bind (fun x -> Some(x.Players)))
+                |> List.collect (fun players -> players |> Array.toList)
+                |> List.choose (fun player -> player.Score)
+                |> List.averageBy (fun score -> (double score)))
         }

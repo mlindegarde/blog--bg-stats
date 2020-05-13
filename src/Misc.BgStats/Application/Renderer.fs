@@ -100,3 +100,6 @@ module Renderer =
 
     let displayNGamesToSellOrTrade (limit : int) = displayResults (sprintf "Top %d Games to Sell / Trade" limit, limit)
     let display15GamesToSellOrTrade = 15 |> displayNGamesToSellOrTrade
+
+    let displayAverageScore (boardGameName : string, avgScore : double) =
+        printf "Average score for %s is %.2f" boardGameName avgScore
