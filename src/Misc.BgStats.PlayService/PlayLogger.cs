@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Topshelf.Runtime;
+using Misc.BgStats.PlayService.Config;
+using Serilog;
 
 namespace Misc.BgStats.PlayService
 {
     public class PlayLogger
     {
         #region Member Variables
-        private readonly HostSettings _hostSettings;
+        private readonly CancellationTokenSource _tokenSource = new CancellationTokenSource();
+        private readonly ProgramConfig _config;
+        private readonly ILogger _logger;
 
         private Task _serviceTask;
-        private CancellationTokenSource _tokenSource = new CancellationTokenSource();
         private CancellationToken _cancellationToken;
         #endregion
 
         #region Constructor
-        public PlayLogger(HostSettings hostSettings)
+        public PlayLogger(ProgramConfig config, ILogger logger)
         {
-            _hostSettings = hostSettings;
+            _config = config;
+            _logger = logger;
+
+            _logger.Debug("Will log plays for {GameCount} games:", _config.BoardGames.Count);
+
+            _config.BoardGames
+                .ForEach(bg => _logger.Debug("\t- {GameName} - {GameId}", bg.Name, bg.Id));
         }
         #endregion
 
@@ -31,6 +39,8 @@ namespace Misc.BgStats.PlayService
 
         public async Task StartAsync()
         {
+            _logger.Verbose("Staring {ClassName}", nameof(PlayLogger));
+
             await RunAsync();
         }
 
@@ -46,6 +56,7 @@ namespace Misc.BgStats.PlayService
         #region Main Execution Loop
         private async Task RunAsync()
         {
+            _logger.Verbose("Running {ClassName}", nameof(PlayLogger));
             while (!_cancellationToken.IsCancellationRequested)
             {
 
