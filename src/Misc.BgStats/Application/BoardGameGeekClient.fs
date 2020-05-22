@@ -281,13 +281,28 @@ module BoardGameGeekClient =
             let! details = client |> getDetailDataAsync [|itemId|] logger
             let! plays = client |> getPlayDataForItemAsync itemId logger
 
+            let groupedByPlayerCount =
+                plays
+                |> List.choose (fun play -> play.Players |> Option.bind (fun x -> Some(x.Players)))
+                |> List.groupBy (fun play -> play.Length)
+
             let boardGameName = (details.[0].Names |> Array.find (fun n -> n.Type = "primary")).Value
 
-            return 
-                (boardGameName,
-                plays 
-                |> List.choose (fun play -> play.Players |> Option.bind (fun x -> Some(x.Players)))
-                |> List.collect (fun players -> players |> Array.toList)
-                |> List.choose (fun player -> player.Score)
-                |> List.averageBy (fun score -> (double score)))
+            let maxPlayerCount = details.[0].Maxplayers.Value
+            let minPlayerCount = details.[0].Minplayers.Value
+
+            return
+                groupedByPlayerCount
+                |> List.filter (fun (playerCount, _) -> playerCount >= minPlayerCount && playerCount <= maxPlayerCount)
+                |> List.sortBy (fun (playerCount, _) -> playerCount)
+                |> List.map (
+                    fun (groupPlayerCount, groupPlayers) ->
+                        let sampleSize = groupPlayers.Length
+                        let avgScore =
+                            groupPlayers
+                            |> List.collect (fun players -> players |> Array.toList)
+                            |> List.choose (fun player -> player.Score)
+                            |> List.averageBy (fun score -> (double score))
+
+                        (boardGameName, groupPlayerCount, sampleSize, avgScore))
         }

@@ -44,11 +44,16 @@ module Program =
         task {
             use client = initClient()
 
+            
             // 286096 = Tapestry
             // 199792 = Everdell
             // 266192 = Wingspan
-            let! result = client |> BoardGameGeekClient.getAverageScoreForItemAsync 266192 logger
+            // 170042 = Raiders of the North Sea
+            // 201808 = Clank!
+            // 169786 = Scythe
+            let! result = client |> BoardGameGeekClient.getAverageScoreForItemAsync 169786 logger
             Renderer.displayAverageScore result
+            
 
             (*
             let! collection = client |> BoardGameGeekClient.getCollectionAsync config.BoardGameGeek logger
