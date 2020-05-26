@@ -1,28 +1,3 @@
 {
-    "BoardGames": [
-        {
-            "Id": 286096,
-            "Name": "Tapestry"
-        },
-        {
-            "Id": 199792,
-            "Name": "Everdell"
-        },
-        {
-            "Id": 266192,
-            "Name": "Wingspan"
-        },
-        {
-            "Id": 170042,
-            "Name": "Raiders of the North Sea"
-        },
-        {
-            "Id": 201808,
-            "Name": "Clank!"
-        },
-        {
-            "Id": 169786,
-            "Name": "Scythe"
-        }
-    ] 
+
 }
