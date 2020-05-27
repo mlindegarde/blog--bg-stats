@@ -71,8 +71,9 @@ namespace Misc.BgStats.PlayService
             {
                 List<BoardGame> boardGames = await _mongoSvc.GetBoardListAsync(_cancellationToken);
 
-                _logger.Debug("Will log plays for {GameCount} games:", boardGames.Count);
-                boardGames.ForEach(bg => _logger.Debug("\t- {GameName} - {GameId}", bg.Name, bg.ObjectId));
+                _logger.Information("Will log plays for {GameCount} games:", boardGames.Count);
+                boardGames.ForEach(bg => _logger.Information("\t- {GameName} - {GameId}", bg.Name, bg.ObjectId));
+                _logger.Information($"Beginning update loop...{Environment.NewLine}");
 
                 while (!(_cancellationToken.IsCancellationRequested || error))
                 {
@@ -80,13 +81,22 @@ namespace Misc.BgStats.PlayService
                     {
                         try
                         {
-                            _logger.Information("Starting play logging for {BoardGameName}", bg.Name);
-                            BoardGameStatus status = await _mongoSvc.GetBoardGameStatusAsync(bg.ObjectId, _cancellationToken);
+                            if (!_cancellationToken.IsCancellationRequested)
+                            {
+                                _logger.Information("Starting play logging for {GameName}", bg.Name);
+                                BoardGameStatus status = await _mongoSvc.GetBoardGameStatusAsync(bg.ObjectId, _cancellationToken);
 
-                            if (status?.ImportSuccessful == true)
-                                await GetMostRecentPlaysAsync(bg, status);
+                                if (status?.ImportSuccessful == true)
+                                    await GetMostRecentPlaysAsync(bg, status);
+                                else
+                                    await GetAllPlaysAsync(bg);
+
+                                _logger.Information($"Completed updating plays for {{GameName}}{Environment.NewLine}", bg.Name);
+                            }
                             else
-                                await GetAllPlaysAsync(bg);
+                            {
+                                _logger.Information("Skipping {GameName}, service is shutting down", bg.Name);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -95,8 +105,13 @@ namespace Misc.BgStats.PlayService
                         }
                     }
 
-                    _logger.Information("Finished processing list, will update in {Minutes} minutes", 30);
-                    await Task.Delay(TimeSpan.FromMinutes(30), _cancellationToken);
+                    if (!_cancellationToken.IsCancellationRequested)
+                    {
+                        _logger.Information("Finished processing list, will update in {Minutes} minutes", _config.UpdateDelayInMinutes);
+                        await Task
+                            .Delay(TimeSpan.FromMinutes(_config.UpdateDelayInMinutes), _cancellationToken)
+                            .ContinueWith(t => { }, CancellationToken.None);
+                    }
                 }
             }
             catch (Exception ex)
@@ -109,21 +124,22 @@ namespace Misc.BgStats.PlayService
         #region Utility Methods
         private async Task GetMostRecentPlaysAsync(BoardGame boardGame, BoardGameStatus status)
         {
-            if (status.LastUpdated.Date == DateTime.Now.Date)
+            if (_config.OnlyUpdateOncePerDay && status.LastUpdated.Date == DateTime.Now.Date)
             {
                 _logger.Information("Already logged plays for {BoardGameName} today", boardGame.Name);
                 return;
             }
 
             DateTime maxDate = DateTime.Now;
-            DateTime minDate = maxDate.AddDays(-7);
+            DateTime minDate = maxDate.AddDays(-_config.IncrementalSpanInDays);
             int page = 1;
 
             _logger.Information(
-                "Getting plays between {MinDate} and {MaxDate} for {BoardGameName}", 
-                boardGame.Name, 
-                minDate.Date, 
-                maxDate.Date);
+                "Getting plays between {MinDate} and {MaxDate} ({DayCount} days) for {BoardGameName}",
+                minDate.Date.ToShortDateString(), 
+                maxDate.Date.ToShortDateString(),
+                maxDate.Subtract(minDate).TotalDays,
+                boardGame.Name);
 
             GetPlaysResult result;
 
@@ -134,14 +150,14 @@ namespace Misc.BgStats.PlayService
                 if (result.TooManyRequests)
                 {
                     _logger.Error("Too many requests, will wait to resume...");
-                    await Task.Delay(TimeSpan.FromSeconds(60), _cancellationToken);
+                    await Task.Delay(TimeSpan.FromSeconds(60), _cancellationToken).ContinueWith(t => { }, CancellationToken.None);
                     continue;
                 }
 
                 if (!result.WasSuccessful)
                 {
                     _logger.Error("Failed to get plays, not sure what to do now...");
-                    await Task.Delay(TimeSpan.FromSeconds(3));
+                    await Task.Delay(TimeSpan.FromSeconds(3), _cancellationToken).ContinueWith(t => { }, CancellationToken.None);
                     continue;
                 }
 
@@ -150,14 +166,23 @@ namespace Misc.BgStats.PlayService
                     result.Page, 
                     Math.Ceiling(result.TotalCount/100d));
 
-                await _mongoSvc.UpsertPlaysAsync(result.Plays, _cancellationToken);
+                UpsertPlaysResult upsertResult = await _mongoSvc.UpsertPlaysAsync(boardGame, result.Plays, _cancellationToken);
+
+                if(!upsertResult.WasSuccessful)
+                    _logger.Error("Failed to completed the upsert successfully");
+
+                _logger.Information(
+                    "Upsert results: Matched {MatchedCount} - Modified {ModifiedCount} - Inserted {InsertedCount}",
+                    upsertResult.MatchedCount,
+                    upsertResult.ModifiedCount,
+                    upsertResult.InsertedCount);
+
                 page++;
 
             } while (!result.WasSuccessful || result.Plays.Count == MaxPlaysPerPage);
 
             status.LastUpdated = DateTime.Now;
             await _mongoSvc.UpsertBoardGameStatusAsync(status, _cancellationToken);
-
         }
 
         private async Task GetAllPlaysAsync(BoardGame boardGame)
@@ -192,7 +217,7 @@ namespace Misc.BgStats.PlayService
                     result.Page,
                     Math.Ceiling(result.TotalCount / 100d));
 
-                await _mongoSvc.InsertPlaysAsync(result.Plays, _cancellationToken);
+                await _mongoSvc.InsertPlaysAsync(boardGame, result.Plays, _cancellationToken);
                 page++;
 
             } while (!result.WasSuccessful || result.Plays.Count == MaxPlaysPerPage);

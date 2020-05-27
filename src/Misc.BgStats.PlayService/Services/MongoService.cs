@@ -48,7 +48,7 @@ namespace Misc.BgStats.PlayService.Services
             return await collection.CountDocumentsAsync(x => x.ObjectId == id, new CountOptions(), cancellationToken);
         }
 
-        public async Task InsertPlaysAsync(List<Play> plays, CancellationToken cancellationToken)
+        public async Task InsertPlaysAsync(BoardGame boardGame, List<Play> plays, CancellationToken cancellationToken)
         {
             if (plays?.Any() != true)
             {
@@ -60,23 +60,40 @@ namespace Misc.BgStats.PlayService.Services
             IMongoCollection<Play> collection = database.GetCollection<Play>(PlayCollection);
 
             _logger.Verbose("Inserting {Count} plays for ObjectId {ObjectID}", plays.Count, plays[0].ObjectId);
-            //await collection.InsertManyAsync(plays, null, cancellationToken);
 
             foreach (Play play in plays)
             {
-                await collection.ReplaceOneAsync(
-                    x => x.Id == play.Id, play,
-                    new ReplaceOptions { IsUpsert = true },
-                    cancellationToken);
+                try
+                {
+                    ReplaceOneResult result = 
+                        await collection.ReplaceOneAsync(
+                            x => x.Id == play.Id, play,
+                            new ReplaceOptions {IsUpsert = true},
+                            cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    _logger.Warning("Aborting insert, the operation has been canceled");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex,
+                        "Failed to insert play {PlayId} for {GameName}: {ErrorMessage}",
+                        play.Id,
+                        boardGame.Name,
+                        ex.Message);
+                }
             }
         }
 
-        public async Task UpsertPlaysAsync(List<Play> plays, CancellationToken cancellationToken)
+        public async Task<UpsertPlaysResult> UpsertPlaysAsync(BoardGame boardGame, List<Play> plays, CancellationToken cancellationToken)
         {
+            UpsertPlaysResult upsertResult = new UpsertPlaysResult();
+            
             if (plays?.Any() != true)
             {
                 _logger.Warning("Attempted to log an empty play list");
-                return;
+                return upsertResult;
             }
 
             IMongoDatabase database = _client.GetDatabase(Database);
@@ -86,11 +103,36 @@ namespace Misc.BgStats.PlayService.Services
 
             foreach (Play play in plays)
             {
-                await collection.ReplaceOneAsync(
-                    x => x.Id == play.Id, play, 
-                    new ReplaceOptions {IsUpsert = true}, 
-                    cancellationToken);
+                try
+                {
+                    ReplaceOneResult result =
+                        await collection.ReplaceOneAsync(
+                            x => x.Id == play.Id, play,
+                            new ReplaceOptions {IsUpsert = true},
+                            cancellationToken);
+
+                    if (result.ModifiedCount == 0 && result.MatchedCount == 0 && result.UpsertedId != null)
+                        upsertResult.InsertedCount++;
+
+                    upsertResult.MatchedCount += result.MatchedCount;
+                    upsertResult.ModifiedCount += result.ModifiedCount;
+                    upsertResult.WasSuccessful = true;
+                }
+                catch (OperationCanceledException)
+                {
+                    _logger.Warning("Aborting upsert, the operation has been canceled");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error( ex,
+                        "Failed to upsert play {PlayId} for {GameName}: {ErrorMessage}",
+                        play.Id,
+                        boardGame.Name,
+                        ex.Message);
+                }
             }
+
+            return upsertResult;
         }
 
         public async Task DeletePlaysFor(int id, CancellationToken cancellationToken)
@@ -99,7 +141,7 @@ namespace Misc.BgStats.PlayService.Services
             IMongoCollection<Play> collection = database.GetCollection<Play>(PlayCollection);
 
             _logger.Verbose("Removing all plays for {ObjectId}", id);
-            await collection.DeleteManyAsync(x => x.ObjectId == id, cancellationToken);
+            await collection.DeleteManyAsync(x => x.ObjectId == id, cancellationToken).ContinueWith(t => { }, CancellationToken.None);
         }
 
         public async Task<BoardGameStatus> GetBoardGameStatusAsync(int id, CancellationToken cancellationToken)
@@ -107,7 +149,14 @@ namespace Misc.BgStats.PlayService.Services
             IMongoDatabase database = _client.GetDatabase(Database);
             IMongoCollection<BoardGameStatus> collection = database.GetCollection<BoardGameStatus>(BoardGameStatusCollection);
 
-            return await collection.Find(x => x.ObjectId == id).FirstOrDefaultAsync(cancellationToken);
+            try
+            {
+                return await collection.Find(x => x.ObjectId == id).FirstOrDefaultAsync(cancellationToken);
+            }
+            catch (TaskCanceledException)
+            {
+                return null;
+            }
         }
 
         public async Task UpsertBoardGameStatusAsync(BoardGameStatus status, CancellationToken cancellationToken)
@@ -126,7 +175,7 @@ namespace Misc.BgStats.PlayService.Services
                 x => x.ObjectId == status.ObjectId, 
                 status, 
                 new ReplaceOptions { IsUpsert = true },
-                cancellationToken);
+                cancellationToken).ContinueWith(t => { }, CancellationToken.None);
         }
         #endregion
     }

@@ -1,3 +1,5 @@
 {
-
+    "UpdateDelayInMinutes": 30,
+    "IncrementalSpanInDays": 7,
+    "OnlyUpdateOncePerDay": true 
 }

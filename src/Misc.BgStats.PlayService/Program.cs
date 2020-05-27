@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Misc.BgStats.PlayService.Config;
 using Serilog;
+using Serilog.Events;
 using Topshelf;
 
 namespace Misc.BgStats.PlayService
@@ -43,6 +44,11 @@ namespace Misc.BgStats.PlayService
                 new LoggerConfiguration()
                     .MinimumLevel.Verbose()
                     .WriteTo.Console()
+                    .WriteTo.File(
+                        "Logs/log-.txt", 
+                        rollingInterval: RollingInterval.Day, 
+                        restrictedToMinimumLevel: LogEventLevel.Information, 
+                        shared: true)
                     .CreateLogger();
                     
             return this;
