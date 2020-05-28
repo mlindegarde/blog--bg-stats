@@ -284,7 +284,7 @@ module BoardGameGeekClient =
             let groupedByPlayerCount =
                 plays
                 |> List.choose (fun play -> play.Players |> Option.bind (fun x -> Some(x.Players)))
-                |> List.groupBy (fun play -> play.Length)
+                |> List.groupBy (fun players -> players.Length)
 
             let boardGameName = (details.[0].Names |> Array.find (fun n -> n.Type = "primary")).Value
 
@@ -297,12 +297,15 @@ module BoardGameGeekClient =
                 |> List.sortBy (fun (playerCount, _) -> playerCount)
                 |> List.map (
                     fun (groupPlayerCount, groupPlayers) ->
-                        let sampleSize = groupPlayers.Length
-                        let avgScore =
+                        let validScores =
                             groupPlayers
                             |> List.collect (fun players -> players |> Array.toList)
                             |> List.choose (fun player -> player.Score)
+                            |> List.filter (fun score -> score > 0)
+
+                        let avgScore =
+                            validScores
                             |> List.averageBy (fun score -> (double score))
 
-                        (boardGameName, groupPlayerCount, sampleSize, avgScore))
+                        (boardGameName, groupPlayerCount, validScores.Length, avgScore))
         }

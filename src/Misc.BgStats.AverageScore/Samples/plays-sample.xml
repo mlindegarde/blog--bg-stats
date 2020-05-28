@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plays username="mlindegarde" userid="624922" total="94" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+  <play id="41112753" date="2020-02-19" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Everdell" objecttype="thing" objectid="199792">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="dleone3264" userid="2437467" name="Danielle Leone" startposition="1" color="" score="58" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="60" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="41076600" date="2020-02-17" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Everdell" objecttype="thing" objectid="199792">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="67" new="0" rating="0" win="1" />
+      <player username="dleone3264" userid="2437467" name="Danielle Leone" startposition="2" color="" score="45" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="41050853" date="2020-02-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="86" new="0" rating="0" win="1" />
+      <player username="dleone3264" userid="2437467" name="Danielle Leone" startposition="2" color="" score="78" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40866063" date="2020-02-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="Bookhouse">
+    <item name="Carcassonne" objecttype="thing" objectid="822">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40866051" date="2020-02-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="Bookhouse">
+    <item name="Pandemic: The Cure" objecttype="thing" objectid="150658">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40807756" date="2020-02-06" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Tapestry" objecttype="thing" objectid="286096">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <comments>It was difficult remembering all of the rules, but once we got going it was a great time.</comments>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="224" new="0" rating="9" win="1" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="186" new="0" rating="7" win="0" />
+    </players>
+  </play>
+  <play id="40553645" date="2020-01-24" quantity="2" length="0" incomplete="0" nowinstats="0" location="Josh's">
+    <item name="Star Wars: Imperial Assault" objecttype="thing" objectid="164153">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <comments>Finished the 3rd tutorial mission and started the first real campaign mission.</comments>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="8" win="0" />
+      <player username="" userid="0" name="Josh Taylor" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40405226" date="2020-01-19" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Arkham Horror: The Card Game" objecttype="thing" objectid="205637">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="" new="0" rating="4" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="6" win="0" />
+    </players>
+  </play>
+  <play id="40208392" date="2020-01-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Arkham Horror: The Card Game" objecttype="thing" objectid="205637">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40208322" date="2020-01-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="CodeMash">
+    <item name="Coup" objecttype="thing" objectid="131357">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Robert Trebar" startposition="2" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Random Guy" startposition="3" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Random Guy" startposition="4" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Random Guy" startposition="5" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Random Guy" startposition="6" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40208268" date="2020-01-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="CodeMash">
+    <item name="Flash Point: Fire Rescue" objecttype="thing" objectid="100901">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Robert Trebar" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40208286" date="2020-01-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="CodeMash">
+    <item name="Flash Point: Fire Rescue" objecttype="thing" objectid="100901">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Random Guy" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Robert Trebar" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39894660" date="2019-12-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="Bookhouse">
+    <item name="Pandemic" objecttype="thing" objectid="30549">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39839413" date="2019-12-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Tapestry" objecttype="thing" objectid="286096">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="232" new="0" rating="0" win="1" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="189" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39839420" date="2019-12-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Tapestry" objecttype="thing" objectid="286096">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="147" new="0" rating="7" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="153" new="0" rating="7" win="1" />
+    </players>
+  </play>
+  <play id="39860330" date="2019-12-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Tapestry" objecttype="thing" objectid="286096">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="153" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="200" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="39808370" date="2019-12-29" quantity="3" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Tapestry" objecttype="thing" objectid="286096">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39696281" date="2019-12-26" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Clank!: A Deck-Building Adventure" objecttype="thing" objectid="201808">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="72" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="60" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39701786" date="2019-12-26" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Clank!: A Deck-Building Adventure" objecttype="thing" objectid="201808">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="82" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="86" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="39668667" date="2019-12-25" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Clank!: A Deck-Building Adventure" objecttype="thing" objectid="201808">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="103" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="104" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="39599808" date="2019-12-23" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Mansions of Madness: Second Edition" objecttype="thing" objectid="205059">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40553868" date="2019-12-20" quantity="2" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Pandemic: The Cure" objecttype="thing" objectid="150658">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40490130" date="2019-12-19" quantity="2" length="0" incomplete="0" nowinstats="0" location="Josh's">
+    <item name="Star Wars: Imperial Assault" objecttype="thing" objectid="164153">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Josh Taylor" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40553860" date="2019-12-17" quantity="3" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Pandemic: The Cure" objecttype="thing" objectid="150658">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39505216" date="2019-12-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Mansions of Madness: Second Edition" objecttype="thing" objectid="205059">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Josh Taylor" startposition="3" color="" score="" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Andy Sedgwick" startposition="4" color="" score="" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Jackie Poz" startposition="5" color="" score="" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="40553879" date="2019-12-12" quantity="3" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Pandemic: The Cure" objecttype="thing" objectid="150658">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39257358" date="2019-12-04" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Raiders of the North Sea" objecttype="thing" objectid="170042">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="91" new="0" rating="8" win="1" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="74" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39258684" date="2019-12-04" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Raiders of the North Sea" objecttype="thing" objectid="170042">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="69" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="95" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="39257379" date="2019-12-03" quantity="1" length="0" incomplete="0" nowinstats="0" location="Tabletop">
+    <item name="Raiders of the North Sea" objecttype="thing" objectid="170042">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Josh Taylor" startposition="3" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="39257396" date="2019-12-03" quantity="1" length="0" incomplete="0" nowinstats="0" location="Tabletop">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="71" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="63" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Josh Taylor" startposition="3" color="" score="64" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="38405932" date="2019-10-19" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Dragon Slayer" objecttype="thing" objectid="158243">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="40" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Danielle Leone" startposition="" color="" score="23" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="0" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="38405920" date="2019-10-19" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Shadows over Camelot" objecttype="thing" objectid="15062">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="" color="" score="" new="0" rating="0" win="1" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="38314029" date="2019-10-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Condo)">
+    <item name="Century: Spice Road" objecttype="thing" objectid="209685">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="96" new="0" rating="0" win="1" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="87" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="38207149" date="2019-10-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="73" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="86" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="3" color="" score="78" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="38208600" date="2019-10-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="72" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="92" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="38209873" date="2019-10-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="69" new="0" rating="0" win="1" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="63" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Kirsten Lindegarde" startposition="3" color="" score="59" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="37041457" date="2019-08-06" quantity="1" length="0" incomplete="0" nowinstats="0" location="Bookhouse">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="62" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="82" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="37042130" date="2019-08-06" quantity="1" length="0" incomplete="0" nowinstats="0" location="Bookhouse">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="73" new="0" rating="0" win="1" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="73" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="36741022" date="2019-07-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="67" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="78" new="0" rating="0" win="1" />
+    </players>
+  </play>
+  <play id="36712459" date="2019-07-20" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="79" new="0" rating="0" win="1" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="78" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="36716146" date="2019-07-20" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Wingspan" objecttype="thing" objectid="266192">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="66" new="0" rating="0" win="1" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="64" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40554025" date="2019-03-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Xia: Embers of a Forsaken Star" objecttype="thing" objectid="199329">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+        <subtype value="boardgamecompilation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Danielle Leone" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40554001" date="2019-03-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Xia: Legends of a Drift System" objecttype="thing" objectid="82222">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Josh Taylor" startposition="2" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="3" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Jean" startposition="4" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40554016" date="2019-03-09" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Apartment)">
+    <item name="Xia: Legends of a Drift System" objecttype="thing" objectid="82222">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Danielle Leone" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="21814227" date="2017-01-27" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="New York 1901" objecttype="thing" objectid="174660">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="21814237" date="2017-01-27" quantity="2" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Pandemic" objecttype="thing" objectid="30549">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="21814253" date="2017-01-27" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Star Realms" objecttype="thing" objectid="147020">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="21655820" date="2017-01-13" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Cave Troll" objecttype="thing" objectid="4491">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="21655813" date="2017-01-13" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Memoir '44: Breakthrough" objecttype="thing" objectid="68752">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="21655834" date="2017-01-11" quantity="1" length="0" incomplete="1" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Forbidden Stars" objecttype="thing" objectid="175155">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <comments>We didn't quite follow the rules (on accident) which resulted in a pretty unbalanced experience.</comments>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16857940" date="2015-12-05" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Blood Rage" objecttype="thing" objectid="170216">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="1" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16857945" date="2015-12-05" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Colt Express" objecttype="thing" objectid="158899">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16857950" date="2015-12-05" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Rivet Wars: Battle of Brighton" objecttype="thing" objectid="165048">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16857948" date="2015-12-05" quantity="3" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Rivet Wars: Eastern Front" objecttype="thing" objectid="136000">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16538068" date="2015-11-15" quantity="8" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic Legacy: Season 1" objecttype="thing" objectid="161936">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16538058" date="2015-11-14" quantity="3" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic Legacy: Season 1" objecttype="thing" objectid="161936">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16488278" date="2015-11-08" quantity="5" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic Legacy: Season 1" objecttype="thing" objectid="161936">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16538052" date="2015-11-08" quantity="2" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic Legacy: Season 1" objecttype="thing" objectid="161936">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="16276950" date="2015-10-19" quantity="1" length="30" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Splendor" objecttype="thing" objectid="148228">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Kirsten Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="15343956" date="2015-07-12" quantity="1" length="0" incomplete="1" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Forbidden Stars" objecttype="thing" objectid="175155">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980784" date="2015-05-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Shadows over Camelot" objecttype="thing" objectid="15062">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980786" date="2015-05-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Shadows over Camelot: Merlin's Company" objecttype="thing" objectid="35704">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+        <subtype value="boardgamecompilation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980787" date="2015-05-31" quantity="2" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Splendor" objecttype="thing" objectid="148228">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980788" date="2015-05-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Targi" objecttype="thing" objectid="118048">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980774" date="2015-05-30" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Flash Point: Fire Rescue" objecttype="thing" objectid="100901">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980769" date="2015-05-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Eclipse" objecttype="thing" objectid="72125">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980772" date="2015-05-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Flash Point: Fire Rescue" objecttype="thing" objectid="100901">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="14980791" date="2015-05-16" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Zombicide" objecttype="thing" objectid="113924">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="40554915" date="2015-04-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="Gary Con">
+    <item name="Blood Rage" objecttype="thing" objectid="170216">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="13629355" date="2015-01-10" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Splendor" objecttype="thing" objectid="148228">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="13490317" date="2014-12-25" quantity="1" length="45" incomplete="0" nowinstats="0" location="The Marquard's">
+    <item name="Splendor" objecttype="thing" objectid="148228">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Nila Marquard" startposition="" color="" score="" new="1" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="1" rating="0" win="1" />
+      <player username="" userid="0" name="Tom Marquard" startposition="" color="" score="" new="1" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="13188565" date="2014-11-14" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Cards Against Humanity" objecttype="thing" objectid="50381">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <comments>Played with various people from Moen.</comments>
+  </play>
+  <play id="13188580" date="2014-11-08" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Spite &amp; Malice" objecttype="thing" objectid="6644">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="13188611" date="2014-07-31" quantity="2" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Memoir '44" objecttype="thing" objectid="10630">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="13188627" date="2014-07-31" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic: On the Brink" objecttype="thing" objectid="40849">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+        <subtype value="boardgamecompilation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="13188630" date="2014-07-31" quantity="3" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (Tom)">
+    <item name="Shadows over Camelot" objecttype="thing" objectid="15062">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="13188619" date="2014-07-31" quantity="3" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Shadows over Camelot: Merlin's Company" objecttype="thing" objectid="35704">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+        <subtype value="boardgamecompilation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12148807" date="2014-07-04" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic" objecttype="thing" objectid="30549">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12148818" date="2014-07-04" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Spite &amp; Malice" objecttype="thing" objectid="6644">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12148811" date="2014-07-04" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Takenoko" objecttype="thing" objectid="70919">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12148800" date="2014-07-04" quantity="2" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Ticket to Ride Map Collection: Volume 2 – India &amp; Switzerland" objecttype="thing" objectid="106645">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+        <subtype value="boardgamecompilation" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <comments>Each maps once.</comments>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12148797" date="2014-07-04" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Ticket to Ride: 10th Anniversary" objecttype="thing" objectid="160069">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgamecompilation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12148825" date="2014-07-03" quantity="1" length="0" incomplete="0" nowinstats="0" location="Blossom">
+    <item name="Spite &amp; Malice" objecttype="thing" objectid="6644">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12148829" date="2014-07-03" quantity="1" length="0" incomplete="0" nowinstats="0" location="Blossom">
+    <item name="Timeline: Events" objecttype="thing" objectid="113401">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameintegration" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12073590" date="2014-06-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="BattleLore" objecttype="thing" objectid="25417">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12073599" date="2014-06-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="BattleLore: Call to Arms" objecttype="thing" objectid="28250">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameexpansion" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12073612" date="2014-06-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Forbidden Desert" objecttype="thing" objectid="136063">
+      <subtypes>
+        <subtype value="boardgame" />
+        <subtype value="boardgameimplementation" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12073586" date="2014-06-21" quantity="2" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic" objecttype="thing" objectid="30549">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="12073567" date="2014-06-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Takenoko" objecttype="thing" objectid="70919">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+      <player username="" userid="0" name="Tom Lindegarde" startposition="" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="10930811" date="2014-01-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="Gary Con">
+    <item name="Ad Astra" objecttype="thing" objectid="38343">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+  </play>
+  <play id="10930787" date="2014-01-11" quantity="1" length="0" incomplete="0" nowinstats="0" location="Gary Con">
+    <item name="Coup" objecttype="thing" objectid="131357">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+  </play>
+  <play id="9005913" date="2013-02-22" quantity="1" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic" objecttype="thing" objectid="30549">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="8781491" date="2013-01-20" quantity="6" length="0" incomplete="0" nowinstats="0" location="The Lindegarde's (House)">
+    <item name="Pandemic" objecttype="thing" objectid="30549">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <players>
+      <player username="" userid="0" name="Sarah Lindegarde" startposition="1" color="" score="" new="0" rating="0" win="0" />
+      <player username="mlindegarde" userid="624922" name="Mike Lindegarde" startposition="2" color="" score="" new="0" rating="0" win="0" />
+    </players>
+  </play>
+  <play id="8722079" date="2013-01-05" quantity="3" length="0" incomplete="0" nowinstats="0" location="The DeVilling's">
+    <item name="The Resistance" objecttype="thing" objectid="41114">
+      <subtypes>
+        <subtype value="boardgame" />
+      </subtypes>
+    </item>
+    <comments>Played at the DeVillings holiday party.</comments>
+  </play>
+</plays>
