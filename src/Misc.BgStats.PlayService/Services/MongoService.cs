@@ -121,6 +121,7 @@ namespace Misc.BgStats.PlayService.Services
                 catch (OperationCanceledException)
                 {
                     _logger.Warning("Aborting upsert, the operation has been canceled");
+                    return upsertResult;
                 }
                 catch (Exception ex)
                 {

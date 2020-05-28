@@ -51,7 +51,7 @@ module Program =
             // 170042 = Raiders of the North Sea
             // 201808 = Clank!
             // 169786 = Scythe
-            let! result = client |> BoardGameGeekClient.getAverageScoreForItemAsync 169786 logger
+            let! result = client |> BoardGameGeekClient.getAverageScoreForItemAsync 286096 logger
             Renderer.displayAverageScore result
             
 

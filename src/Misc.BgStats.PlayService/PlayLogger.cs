@@ -179,7 +179,7 @@ namespace Misc.BgStats.PlayService
 
                 page++;
 
-            } while (!result.WasSuccessful || result.Plays.Count == MaxPlaysPerPage);
+            } while ((!result.WasSuccessful || result.Plays.Count == MaxPlaysPerPage) && !_cancellationToken.IsCancellationRequested);
 
             status.LastUpdated = DateTime.Now;
             await _mongoSvc.UpsertBoardGameStatusAsync(status, _cancellationToken);
