@@ -1,4 +1,4 @@
-namespace Misc.BgStats.Domain
+namespace Misc.BgStats.Rankings.Domain
 
 open System
 

@@ -1,8 +1,8 @@
-namespace Misc.BgStats.Application
+namespace Misc.BgStats.Rankings.Application
 
 open System
 
-open Misc.BgStats.Domain.Models
+open Misc.BgStats.Rankings.Domain.Models
 
 module Evaluator =
     let private calcDaysSinceLastPlayed (plays : Play list) =

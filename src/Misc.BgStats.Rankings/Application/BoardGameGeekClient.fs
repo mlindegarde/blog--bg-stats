@@ -1,4 +1,4 @@
-namespace Misc.BgStats.Application
+namespace Misc.BgStats.Rankings.Application
 
 open System
 open System.Net
@@ -10,7 +10,7 @@ open FSharp.Control.Tasks.V2
 open FSharp.Data
 open Serilog
 
-open Misc.BgStats.Domain.Models
+open Misc.BgStats.Rankings.Domain.Models
 
 module BoardGameGeekClient =
     type BggCollection = XmlProvider<"Samples/collection-sample.xml">

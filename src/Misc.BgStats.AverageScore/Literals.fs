@@ -14,6 +14,9 @@ module Literals =
     let RaidersOfTheNorthSea = 170042
 
     [<Literal>]
+    let HallOfHeores = 210163
+
+    [<Literal>]
     let Clank = 201808
 
     [<Literal>]
@@ -26,7 +29,8 @@ module Literals =
         Tapestry; 
         Everdell; 
         Wingspan; 
-        RaidersOfTheNorthSea; 
+        RaidersOfTheNorthSea;
+        HallOfHeores;
         Clank; 
         Scythe;
         ArchitectsOfTheWestKingdom;

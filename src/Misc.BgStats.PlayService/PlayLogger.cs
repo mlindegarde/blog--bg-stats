@@ -149,7 +149,7 @@ namespace Misc.BgStats.PlayService
 
                 if (result.TooManyRequests)
                 {
-                    _logger.Error("Too many requests, will wait to resume...");
+                    _logger.Warning("Too many requests, will wait to resume...");
                     await Task.Delay(TimeSpan.FromSeconds(60), _cancellationToken).ContinueWith(t => { }, CancellationToken.None);
                     continue;
                 }

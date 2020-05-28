@@ -1,6 +1,6 @@
-namespace Misc.BgStats.Application
+namespace Misc.BgStats.Rankings.Application
 
-open Misc.BgStats.Domain.Models
+open Misc.BgStats.Rankings.Domain.Models
 
 module Ranker =
     let Top25AllTime (evaluations : Evaluation list) =

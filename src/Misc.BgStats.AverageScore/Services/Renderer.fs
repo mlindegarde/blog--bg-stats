@@ -49,21 +49,25 @@ module Renderer =
     let displayAverageScore (results : (string * int * int * double) list) =
         printf "%sAverage Scores%s" Environment.NewLine Environment.NewLine
 
-        let name, _, _, _ = results.[0]
+        match results.Length > 0 with
+        | true ->
+            let name, _, _, _ = results.[0]
 
-        name.Length
-        |> displayTopLine2
-        |> displayHeaders2
-        |> displayHeaderLine2
+            name.Length
+            |> displayTopLine2
+            |> displayHeaders2
+            |> displayHeaderLine2
 
-        results
-        |> List.iter (fun (name, playerCount, sampleSize, avgScore) -> 
-            printfn 
-                "\u2551 %-*s \u2502 %7d \u2502 %6d \u2502 %9.2f \u2551" 
-                name.Length
-                name
-                playerCount 
-                sampleSize
-                avgScore)
+            results
+            |> List.iter (fun (name, playerCount, sampleSize, avgScore) -> 
+                printfn 
+                    "\u2551 %-*s \u2502 %7d \u2502 %6d \u2502 %9.2f \u2551" 
+                    name.Length
+                    name
+                    playerCount 
+                    sampleSize
+                    avgScore)
 
-        name.Length |> displayBottomLine2
+            name.Length |> displayBottomLine2
+        | false ->
+            printf "%sNo data found%s" Environment.NewLine Environment.NewLine
