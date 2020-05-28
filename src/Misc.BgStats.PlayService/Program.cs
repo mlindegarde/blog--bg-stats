@@ -30,7 +30,7 @@ namespace Misc.BgStats.PlayService
             _config =
                 new ConfigurationBuilder()
                     .AddJsonFile("programsettings.json", optional: false)
-                    .AddJsonFile("programsettings.local.json", optional: false)
+                    .AddJsonFile("programsettings.local.json", optional: true)
                     .AddEnvironmentVariables()
                     .Build()
                     .Get<ProgramConfig>();
