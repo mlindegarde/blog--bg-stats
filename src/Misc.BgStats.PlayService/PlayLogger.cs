@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Misc.BgStats.PlayService.Config;
 using Misc.BgStats.PlayService.Model;
 using Misc.BgStats.PlayService.Services;
+using MongoDB.Bson;
 using Serilog;
 
 namespace Misc.BgStats.PlayService
@@ -225,6 +226,7 @@ namespace Misc.BgStats.PlayService
             await _mongoSvc.UpsertBoardGameStatusAsync(
                 new BoardGameStatus
                 {
+                    Id = ObjectId.GenerateNewId(),
                     ObjectId = boardGame.ObjectId,
                     BoardGameName = boardGame.Name,
                     ImportSuccessful = true,

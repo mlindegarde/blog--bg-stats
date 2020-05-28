@@ -45,7 +45,7 @@ namespace Misc.BgStats.PlayService
                     .MinimumLevel.Verbose()
                     .WriteTo.Console()
                     .WriteTo.File(
-                        "Logs/log-.txt", 
+                        AppDomain.CurrentDomain.BaseDirectory + "/Logs/log-.txt", 
                         rollingInterval: RollingInterval.Day, 
                         restrictedToMinimumLevel: LogEventLevel.Information, 
                         shared: true)

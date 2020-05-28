@@ -172,11 +172,27 @@ namespace Misc.BgStats.PlayService.Services
             IMongoCollection<BoardGameStatus> collection = database.GetCollection<BoardGameStatus>(BoardGameStatusCollection);
 
             _logger.Verbose("Upserting status for {ObjectId}", status.ObjectId);
-            await collection.ReplaceOneAsync(
-                x => x.ObjectId == status.ObjectId, 
-                status, 
-                new ReplaceOptions { IsUpsert = true },
-                cancellationToken).ContinueWith(t => { }, CancellationToken.None);
+
+            try
+            {
+                ReplaceOneResult result =
+                    await collection.ReplaceOneAsync(
+                        x => x.ObjectId == status.ObjectId,
+                        status,
+                        new ReplaceOptions {IsUpsert = true},
+                        cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                _logger.Warning("Aborting upsert, the operation has been cancelled");
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex,
+                    "Failed to upsert board game status for {GameName}: {ErrorMessage}",
+                    status.BoardGameName,
+                    ex.Message);
+            }
         }
         #endregion
     }
