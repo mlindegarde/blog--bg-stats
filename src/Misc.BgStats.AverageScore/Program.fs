@@ -32,7 +32,9 @@ module Program =
         task {
             use client = initClient()
 
+            logger.Verbose ("Loading game details...")
             let! details = client |> BoardGameGeekClient.getDetailDataAsync [|objectId|] logger
+            logger.Verbose ("Loading complete")
 
             let boardGameName = (details.[0].Names |> Array.find (fun n -> n.Type = "primary")).Value
 
@@ -73,4 +75,7 @@ module Program =
         runAsync
         |> Async.AwaitTask
         |> Async.RunSynchronously
+
+        Console.Write ("Press ENTER to exit: ")
+        Console.ReadLine () |> ignore
         0

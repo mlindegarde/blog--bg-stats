@@ -69,5 +69,7 @@ module Renderer =
                     avgScore)
 
             name.Length |> displayBottomLine2
+            printfn ""
+
         | false ->
-            printf "%sNo data found%s" Environment.NewLine Environment.NewLine
+            printfn "%sNo data found" Environment.NewLine

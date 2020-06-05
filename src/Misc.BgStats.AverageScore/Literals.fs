@@ -25,6 +25,9 @@ module Literals =
     [<Literal>]
     let ArchitectsOfTheWestKingdom = 236457
 
+    [<Literal>]
+    let Arboretum = 140934
+
     let AllGames = [
         Tapestry; 
         Everdell; 
@@ -34,4 +37,5 @@ module Literals =
         Clank; 
         Scythe;
         ArchitectsOfTheWestKingdom;
+        Arboretum;
         ]
