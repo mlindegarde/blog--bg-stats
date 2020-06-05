@@ -65,15 +65,15 @@ namespace Misc.BgStats.PlayService.Services
             {
                 try
                 {
-                    ReplaceOneResult result = 
-                        await collection.ReplaceOneAsync(
-                            x => x.Id == play.Id, play,
-                            new ReplaceOptions {IsUpsert = true},
-                            cancellationToken);
+                    await collection.ReplaceOneAsync(
+                        x => x.Id == play.Id, play,
+                        new ReplaceOptions {IsUpsert = true},
+                        cancellationToken);
                 }
                 catch (OperationCanceledException)
                 {
                     _logger.Warning("Aborting insert, the operation has been canceled");
+                    return;
                 }
                 catch (Exception ex)
                 {
@@ -141,8 +141,16 @@ namespace Misc.BgStats.PlayService.Services
             IMongoDatabase database = _client.GetDatabase(Database);
             IMongoCollection<Play> collection = database.GetCollection<Play>(PlayCollection);
 
-            _logger.Verbose("Removing all plays for {ObjectId}", id);
-            await collection.DeleteManyAsync(x => x.ObjectId == id, cancellationToken).ContinueWith(t => { }, CancellationToken.None);
+            try
+            {
+                _logger.Verbose("Removing all plays for {ObjectId}", id);
+                DeleteResult result = await collection.DeleteManyAsync(x => x.ObjectId == id, cancellationToken);
+                _logger.Verbose("Removed {PlayCount} from {ObjectId}", result.DeletedCount, id);
+            }
+            catch (OperationCanceledException)
+            {
+                _logger.Warning("Aborting delete, the operation was canceled");
+            }
         }
 
         public async Task<BoardGameStatus> GetBoardGameStatusAsync(int id, CancellationToken cancellationToken)
@@ -175,12 +183,11 @@ namespace Misc.BgStats.PlayService.Services
 
             try
             {
-                ReplaceOneResult result =
-                    await collection.ReplaceOneAsync(
-                        x => x.ObjectId == status.ObjectId,
-                        status,
-                        new ReplaceOptions {IsUpsert = true},
-                        cancellationToken);
+                await collection.ReplaceOneAsync(
+                    x => x.ObjectId == status.ObjectId,
+                    status,
+                    new ReplaceOptions {IsUpsert = true},
+                    cancellationToken);
             }
             catch (OperationCanceledException)
             {
