@@ -31,3 +31,8 @@ module Ranker =
             BoardGame = e.BoardGame;
             Evaluation = e;
         })
+
+    let BggRanking (collection: Collection) =
+        collection.BoardGames
+        |> List.filter (fun b -> b.OverallRank > 0)
+        |> List.sortBy (fun b -> b.OverallRank)

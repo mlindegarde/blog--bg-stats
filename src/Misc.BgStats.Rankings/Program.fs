@@ -47,6 +47,7 @@ module Program =
             evaluations |> Ranker.Top25AllTime |> Renderer.displayTop25Games
             evaluations |> Ranker.GamesToPlay |> Renderer.display15GamesToPlay
             evaluations |> Ranker.GamesToSellOrTrade |> Renderer.display15GamesToSellOrTrade
+            collection |> Ranker.BggRanking |> Renderer.displayBggRankings
 
             printf "%sPress ENTER to exit: " Environment.NewLine
             Console.ReadLine() |> ignore

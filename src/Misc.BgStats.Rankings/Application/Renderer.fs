@@ -5,6 +5,7 @@ open System
 open Misc.BgStats.Rankings.Domain.Models
 
 module Renderer =
+    // Calulated Rankings
     let private getScore (scoreType : ScoreType) (scores : Score list) =
         (scores |> List.find (fun s -> s.ScoreType = scoreType)).Value
 
@@ -100,3 +101,72 @@ module Renderer =
 
     let displayNGamesToSellOrTrade (limit : int) = displayResults (sprintf "Top %d Games to Sell / Trade" limit, limit)
     let display15GamesToSellOrTrade = 15 |> displayNGamesToSellOrTrade
+
+    // BGG Ranking
+    let private displayRankingTopLine (longestName : int) =
+        printf "\u2554"
+        [0..4] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u2564"
+        [0..9] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u2564"
+        [0..longestName+1] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u2564"
+        [0..11] |> List.iter (fun _ -> printf "\u2550")
+        printfn "\u2557"
+
+        longestName
+
+    let private displayRankingHeaders (longestName : int) =
+        printfn
+            "\u2551   # \u2502 BGG RANK \u2502 %-*s \u2502 AVG RATING \u2551"
+            longestName
+            "TITLE"
+
+        longestName
+
+    let private displayRankingHeaderLine (longestName : int) =
+        printf "\u2560"
+        [0..4] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u256A"
+        [0..9] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u256A"
+        [0..longestName+1] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u256A"
+        [0..11] |> List.iter (fun _ -> printf "\u2550")
+        printfn "\u2563"
+
+    let private displayRankingBottomLine (longestName : int) =
+        printf "\u255A"
+        [0..4] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u2567"
+        [0..9] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u2567"
+        [0..longestName+1] |> List.iter (fun _ -> printf "\u2550")
+        printf "\u2567"
+        [0..11] |> List.iter (fun _ -> printf "\u2550")
+        printfn "\u255D"
+
+    let displayBggRankings (boardGames : BoardGame list) =
+        printf "%s%s%s" Environment.NewLine "BGG Rankings" Environment.NewLine
+
+        let longestName = 
+            boardGames 
+            |> List.map (fun b -> b.Name.Length)
+            |> List.max
+
+        longestName
+        |> displayRankingTopLine
+        |> displayRankingHeaders
+        |> displayRankingHeaderLine
+
+        boardGames
+        |> List.iteri (fun i b ->
+            printfn
+                "\u2551%4d \u2502 %8d \u2502 %-*s \u2502 %10.2f \u2551"
+                (i+1)
+                b.OverallRank
+                longestName
+                b.Name
+                b.AverageRating)
+
+        longestName |> displayRankingBottomLine
