@@ -259,3 +259,7 @@ Logs/
 
 # Ionide
 **/.ionide/
+
+# macOS
+.DS_Store
+
